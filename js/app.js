@@ -313,32 +313,29 @@ function initContactForm() {
       }
 
       const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
 
       try {
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
-          body: formData
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: json
         });
 
         const data = await response.json();
 
         if (data.success) {
-          showToast("Message delivered successfully! Gauri will get back to you shortly.", "success");
+          showToast("Message sent successfully! Gauri will get back to you shortly.", "success");
           form.reset();
         } else {
-          // If access key is pending or invalid, fallback gracefully to direct mailto client
-          const name = formData.get('name') || '';
-          const email = formData.get('email') || '';
-          const msg = formData.get('message') || '';
-          window.location.href = `mailto:gaurimalik24@gmail.com?subject=Portfolio%20Contact%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(msg + '\n\nSender Email: ' + email)}`;
-          showToast("Opening email app to send message to gaurimalik24@gmail.com!");
+          showToast(data.message || "Invalid Web3Forms Access Key. Please update your key in index.html", "error");
         }
       } catch (err) {
-        const name = formData.get('name') || '';
-        const email = formData.get('email') || '';
-        const msg = formData.get('message') || '';
-        window.location.href = `mailto:gaurimalik24@gmail.com?subject=Portfolio%20Contact%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(msg + '\n\nSender Email: ' + email)}`;
-        showToast("Opening email app to send message to gaurimalik24@gmail.com!");
+        showToast("Network error. Please try again or use the Direct Email button.", "error");
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
