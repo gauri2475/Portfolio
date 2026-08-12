@@ -302,23 +302,49 @@ function initContactForm() {
   const copyPhoneBtn = document.getElementById('copy-phone-btn');
 
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.innerHTML : 'Send Message';
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending Message...`;
+      }
+
       const formData = new FormData(form);
-      const name = formData.get('name') || '';
-      const email = formData.get('email') || '';
-      const msg = formData.get('message') || '';
 
-      const subject = `Portfolio Inquiry from ${name}`;
-      const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}`;
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData
+        });
 
-      const mailtoUrl = `mailto:gaurimalik24@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const data = await response.json();
 
-      window.location.href = mailtoUrl;
-
-      showToast("Opening your email client to send to gaurimalik24@gmail.com!");
-      form.reset();
+        if (data.success) {
+          showToast("Message delivered successfully! Gauri will get back to you shortly.", "success");
+          form.reset();
+        } else {
+          // If access key is pending or invalid, fallback gracefully to direct mailto client
+          const name = formData.get('name') || '';
+          const email = formData.get('email') || '';
+          const msg = formData.get('message') || '';
+          window.location.href = `mailto:gaurimalik24@gmail.com?subject=Portfolio%20Contact%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(msg + '\n\nSender Email: ' + email)}`;
+          showToast("Opening email app to send message to gaurimalik24@gmail.com!");
+        }
+      } catch (err) {
+        const name = formData.get('name') || '';
+        const email = formData.get('email') || '';
+        const msg = formData.get('message') || '';
+        window.location.href = `mailto:gaurimalik24@gmail.com?subject=Portfolio%20Contact%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(msg + '\n\nSender Email: ' + email)}`;
+        showToast("Opening email app to send message to gaurimalik24@gmail.com!");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }
+      }
     });
   }
 
