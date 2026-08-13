@@ -16,7 +16,7 @@ A sleek, responsive, glassmorphic portfolio web application .
 - ⌨️ **Playable Typing Speed Test Game**: Interactive mini-game modal with real-time WPM calculation, character accuracy tracking, 3 difficulty levels, and direct link to live deployment.
 - 🌤️ **Interactive Weather Forecast App**: Live preview modal featuring city search, weather conditions, °C/°F unit conversion, and direct link to live deployment.
 - ⚡ **Virtual EV Charging Simulator**: HackSmart Hackathon **Top 10 Finalist** project spotlight card.
-- 💼 **Industry Experience Showcase**: Highlighting internship experience at **Cybrovate Technologies Pvt. Ltd.** (AI Cybersecurity, Endpoint Security, SOC Automation).
+- 💼 **Industry Experience Showcase**: Highlighting internship experience at **Cybrovate Technologies Pvt. Ltd.** (Frontend Architecture, Animated UI Components, Design-to-Code Translation).
 - 🎓 **Academic Background**: Clean flexbox header layout showcasing **B.Tech Computer Science** credentials (**8.84/10 CGPA**) at GGSIPU & Senior Secondary score (**93.00%**).
 - 🛠️ **Technical Capabilities Grid**: Categorized skill pills for HTML5, CSS3, JavaScript (ES6+), React, Python, MySQL, Git, GitHub, REST APIs, and Responsive Design.
 - 📱 **100% Mobile Responsive Layout**: Built with a mobile-first approach including stacked contact layout and mobile navigation menu.
@@ -29,7 +29,7 @@ A sleek, responsive, glassmorphic portfolio web application .
 - **Core**: HTML5, CSS3, JavaScript (ES6+)
 - **Frameworks & Libraries**: React, OGL (WebGL Shader Library)
 - **Styling**: Vanilla CSS3 (Glassmorphism, CSS Variables, Flexbox, CSS Grid)
-- **Tools & Version Control**: Git, GitHub, Python HTTP Server, Netlify
+- **Tools & Version Control**: Git, GitHub, GitHub Pages, Web3Forms, Python HTTP Server, Netlify
 - **Design Palette**: Obsidian Black (`#03010A`), Electric Cyan (`#06B6D4`), Vivid Indigo (`#4F46E5`), Ice Blue (`#E0F2FE`)
 
 ---
@@ -85,6 +85,7 @@ Portfolio/
 ## 📬 Contact Information
 
 - **Developer**: Gauri Malik
+- **LinkedIn**: [https://www.linkedin.com/in/gauri-malik/](https://www.linkedin.com/in/gauri-malik/)
 - **Email**: [gaurimalik24@gmail.com](mailto:gaurimalik24@gmail.com)
 - **Phone / WhatsApp**: +91 8595069717
 - **Location**: Delhi, India
